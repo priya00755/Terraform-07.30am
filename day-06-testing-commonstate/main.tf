@@ -5,21 +5,17 @@ resource "aws_vpc" "name" {
     }
   
 }
-
 resource "aws_subnet" "name" {
-vpc_id = aws_vpc.name.id
+    vpc_id = aws_vpc.name.id
     cidr_block = "10.0.0.0/24"
     tags = {
         Name = "piya-subnet"
-}
-    
-}
+    }
 
-resource "aws_subnet" "name-1" {
-vpc_id = aws_vpc.name.id
-    cidr_block = "10.0.1.0/24"
-    tags = {
-        Name = "piya-subnet"
-}
-    
+resource "aws_instance" "name" {
+  ami = "ami-02dfbd4ff395f2a1b"
+  instance_type = "t3.micro"
+  tags = {
+    Name = "test-instance"
+  }
 }
